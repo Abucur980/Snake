@@ -1,0 +1,40 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: blueviolet; */
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+#game-board {
+    border: 8px solid black;
+    background-color: floralwhite;
+    width: 60rem;
+    height: 60rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.board-cell {
+    /* background: red; */
+    box-sizing: border-box;
+    border: 1px solid black;
+    width: 6rem;
+    height: 6rem;
+}
+
+.snake {
+    background-color: greenyellow;
+}
