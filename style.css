@@ -1,5 +1,5 @@
-html {
-    font-size: 62.5%;
+*, ::after, ::before {
+    box-sizing: content-box;
 }
 
 body {
@@ -8,33 +8,56 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    /* background-color: blueviolet; */
-    width: 100vw;
-    height: 100vh;
-}
-
-h1 {
-    font-size: 3.5rem;
+    background-color: #9bba5a;
+    font-family: "Press Start 2P";
 }
 
 #game-board {
-    border: 8px solid black;
-    background-color: floralwhite;
-    width: 60rem;
-    height: 60rem;
-    margin-bottom: 2rem;
+    /* border: 10px solid rgba(0,0,0,0.75); */
+    /* background-color: floralwhite; */
+    width: 600px;
+    height: 600px;
+    /* margin: 10px 0; */
     display: flex;
     flex-wrap: wrap;
+    box-sizing: inherit;
+}
+
+.nes-container {
+    border-image-outset: 0 !important;
+    padding: 0 !important;
+    margin: 8px !important;
 }
 
 .board-cell {
     /* background: red; */
     box-sizing: border-box;
-    border: 1px solid black;
-    width: 6rem;
-    height: 6rem;
+    /* border: 2px solid black; */
+    width: 30px;
+    height: 30px;
 }
 
 .snake {
-    background-color: greenyellow;
+    background-color: rgba(0,0,0,0.75);
+    /* border-radius: 100%; */
+    box-sizing: border-box;
+    border: 2px solid #9bba5a;
+}
+
+.apple {
+    background-image: url(food.svg);
+    background-size: 100% 100%;
+    opacity: .75;
+	animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(0.8);
+              transform: scale(0.8);
+    }
 }

@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
     <title>Snake</title>
 </head>
 <body>
-    <h1>Snake game</h1>
-    <div id="game-board"></div>
+    <h1 style="margin-top:16px;">Snake game</h1>
+    <div class="nes-container is-rounded">
+        <div id="game-board"></div>
+    </div>
+    
+    <button class="start nes-btn">Start</button>
     <script src="index.js"></script>
 </body>
 </html>
