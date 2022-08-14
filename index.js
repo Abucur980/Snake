@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // generate board grid 20x20
     for (let i = 0; i < 400; ++i) {
-        document.getElementById('game-board').insertAdjacentHTML('beforeend', '<div class="board-cell">'+ i +'</div>');
+        document.getElementById('game-board').insertAdjacentHTML('beforeend', '<div class="board-cell"></div>');
     }
 
     let movement = 1;
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // define the snake
         snake = [83, 82, 81];
         snake.forEach(index => cells[index].classList.add('snake'));
+        randomFruits()
         // call the function movementResults once in 250 milliseconds
         interval = setInterval(movementResults, 250);
     }
@@ -60,6 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cells[snake[0]].classList.add('snake');
     }
+
+    function randomFruits() {
+        let fruitIndex = Math.floor(Math.random() * cells.length);
+        while(cells[fruitIndex].classList.contains('snake')) {
+            fruitIndex = Math.floor(Math.random() * cells.length);
+        }
+        cells[fruitIndex].classList.add('apple')
+      }
 
     document.addEventListener("keyup", snakeMovement);
     document.getElementsByClassName("start")[0].addEventListener("click", startMovement);
