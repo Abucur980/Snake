@@ -5,23 +5,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let movement = 1;
+    let snake = [81, 82, 83];
+    let interval = 0;
+    let cells = document.querySelectorAll(".board-cell");
+
+    function startMovement() {
+        // define the snake
+        snake = [81, 82, 83];
+        snake.forEach(index => cells[index].classList.add('snake'));
+        // call the function movementResults once in 250 milliseconds
+        interval = setInterval(movementResults, 250);
+    }
 
     function snakeMovement(event) {
-        // cells[currentIndex].classList.remove("snake");
-        if(event.code === 'ArrowRight') {
-            movement = 1 // pressing the right arrow will make the snake go right
-            console.log(movement);
-        } else if (event.code === 'ArrowUp') {
-            movement = -20 // if we press the up arrow the snake goes back ten divs, appearing to go up
-            console.log(movement);
-        } else if (event.code === 'ArrowLeft') {
-            movement = -1 // if we press left the snake will go left one div
-            console.log(movement);
+        if(event.code === 'ArrowUp') {
+            // if we press the up arrow the snake goes back 20 divs, appearing to go up
+            movement = -20;
+        } else if (event.code === 'ArrowRight') {
+            // pressing the right arrow will make the snake go right
+            movement = 1;
         } else if (event.code === 'ArrowDown') {
-            movement = + 20 // if we press down the snake head will instantly appear in div ten divs from where you are now
-            console.log(movement);
+            // if we press down the snake head will instantly appear in div 20 divs from where you are now
+            movement = 20;
+        } else if (event.code === 'ArrowLeft') {
+            // if we press left the snake will go left one div
+            movement = -1;
         }
     }
 
-    document.addEventListener('keyup', snakeMovement);
+    function movementResults() {
+        const lastSnakeCell = snake.pop();
+        // remove snake class from lastSnakeCell in order to create the effect of snake moving
+        cells[lastSnakeCell].classList.remove('snake');
+        // make the head of the snake turn
+        snake.unshift(snake[0] + movement);
+
+        cells[snake[0]].classList.add('snake');
+    }
+
+    document.addEventListener("keyup", snakeMovement);
+    document.getElementsByClassName("start")[0].addEventListener("click", startMovement);
 })
