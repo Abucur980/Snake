@@ -9,7 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let interval = 0;
     let cells = document.querySelectorAll(".board-cell");
 
+    function resetGame() {
+        snake.forEach(index => {
+            cells[index].classList.remove('snake');
+        });
+        cells.forEach(element => {
+            element.classList.remove("apple");
+        });
+        movement = 1;
+        clearInterval(interval);
+    }
+
     function startMovement() {
+        document.getElementsByClassName("start")[0].style.display = "none";
+        resetGame();
         // define the snake
         snake = [83, 82, 81];
         snake.forEach(index => cells[index].classList.add('snake'));
@@ -50,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cells[snake[0] + movement].classList.contains("snake")
         ) {
             // if any of the conditions is met, stop the movement
+            document.getElementById('dialog-dark-rounded').showModal();
             return clearInterval(interval);
         }
 
@@ -80,4 +94,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener("keyup", snakeMovement);
     document.getElementsByClassName("start")[0].addEventListener("click", startMovement);
+    document.getElementsByClassName("is-warning")[0].addEventListener("click", startMovement);
 })
