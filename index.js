@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             movement = -1;
         }
     }
-    console.log(339 % 20);
+
     function movementResults() {
         // game over
         if (
@@ -58,6 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
         cells[lastSnakeCell].classList.remove('snake');
         // make the head of the snake turn
         snake.unshift(snake[0] + movement);
+
+        // if the snake eats a fruit
+        if(cells[snake[0]].classList.contains('apple')) {
+            cells[snake[0]].classList.remove('apple')
+            cells[lastSnakeCell].classList.add('snake')
+            snake.push(lastSnakeCell)
+            randomFruits()
+          }
 
         cells[snake[0]].classList.add('snake');
     }
