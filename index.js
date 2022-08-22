@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         snake.forEach(index => cells[index].classList.add('snake'));
         randomFruits()
         // call the function movementResults once in 250 milliseconds
-        interval = setInterval(movementResults, 250);
+        interval = setInterval(movementResults, 280);
     }
 
     function snakeMovement(event) {
@@ -66,12 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('dialog-dark-rounded').showModal();
             return clearInterval(interval);
         }
-
+        cells[snake[0]].classList.remove('snake-head');
         const lastSnakeCell = snake.pop();
         // remove snake class from lastSnakeCell in order to create the effect of snake moving
         cells[lastSnakeCell].classList.remove('snake');
         // make the head of the snake turn
         snake.unshift(snake[0] + movement);
+        
+        cells[snake[0]].classList.add('snake-head');
 
         // if the snake eats a fruit
         if(cells[snake[0]].classList.contains('apple')) {
@@ -82,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
         cells[snake[0]].classList.add('snake');
+        
     }
 
     function randomFruits() {
@@ -89,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         while(cells[fruitIndex].classList.contains('snake')) {
             fruitIndex = Math.floor(Math.random() * cells.length);
         }
-        cells[fruitIndex].classList.add('apple')
+        cells[fruitIndex].classList.add('apple');
+        cells[fruitIndex].classList.add('scale-up-center');
       }
-
     document.addEventListener("keyup", snakeMovement);
     document.getElementsByClassName("start")[0].addEventListener("click", startMovement);
     document.getElementsByClassName("is-warning")[0].addEventListener("click", startMovement);
